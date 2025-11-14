@@ -26,7 +26,7 @@ public class InMemoryItemRepository implements ItemRepository {
     @Override
     public Collection<Item> getAllUserItems(Long userId) {
         return items.values().stream()
-                .filter(item -> item.getOwner().getId() == userId)
+                .filter(item -> item.getOwner().getId().equals(userId))
                 .collect(Collectors.toList());
     }
 
