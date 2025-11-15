@@ -7,8 +7,8 @@ import ru.practicum.shareit.item.dto.ItemDto;
 import ru.practicum.shareit.item.dto.ItemMapper;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.item.repository.ItemRepository;
+import ru.practicum.shareit.user.dto.UserMapper;
 import ru.practicum.shareit.user.model.User;
-import ru.practicum.shareit.user.repository.UserRepository;
 import ru.practicum.shareit.user.service.UserService;
 
 import java.util.List;
@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
     private final UserService userService;
-    private final UserRepository userRepository;
     private final ItemMapper itemMapper;
+    private final UserMapper userMapper;
 
     @Override
     public List<ItemDto> getAllUserItems(Long userId) {
@@ -53,7 +53,7 @@ public class ItemServiceImpl implements ItemService {
         if (itemDto.getAvailable() == null) {
             throw new ValidationException("Статус доступности предемета должен быть указан");
         }
-        User user = userRepository.getUserById(userId);
+        User user = userMapper.dtoToUser(userService.getUserById(userId));
         Item item = itemMapper.dtoToItem(itemDto, user);
         return itemMapper.itemToDto(itemRepository.create(item));
     }

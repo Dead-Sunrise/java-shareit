@@ -51,8 +51,8 @@ public class InMemoryUserRepository implements UserRepository {
         }
         if (users.containsKey(userId)) {
             for (User user1 : users.values()) {
-                if (newUser.getEmail() != null && newUser.getEmail().equals(user1.getEmail()) && !newUser.getId().equals(user1.getId())) {
-                    throw new ValidationException("Этот email уже используется.");
+                if (newUser.getEmail() != null && newUser.getEmail().equals(user1.getEmail()) && !userId.equals(user1.getId())) {
+                    throw new ConflictException("Этот email уже используется.");
                 }
             }
             User oldUser = users.get(userId);
