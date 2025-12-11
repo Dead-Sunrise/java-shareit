@@ -2,8 +2,11 @@ package ru.practicum.shareit.item.dto;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.practicum.shareit.booking.dto.BookingDto;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -17,8 +20,7 @@ public class ItemMapper {
                 .name(item.getName())
                 .description(item.getDescription())
                 .available(item.getAvailable())
-                .owner(item.getOwner())
-                .request(item.getRequest())
+                .ownerId(item.getOwner().getId())
                 .build();
     }
 
@@ -32,7 +34,22 @@ public class ItemMapper {
                 .description(itemDto.getDescription())
                 .available(itemDto.getAvailable())
                 .owner(user)
-                .request(itemDto.getRequest())
+                .build();
+    }
+
+    public ItemDtoWithCommentsAndBookings itemToDtoWithCommentsAndBookings(Item item,
+                                                                           List<CommentDto> comments,
+                                                                           BookingDto lastBooking,
+                                                                           BookingDto nextBooking) {
+        return ItemDtoWithCommentsAndBookings.builder()
+                .id(item.getId())
+                .name(item.getName())
+                .description(item.getDescription())
+                .available(item.getAvailable())
+                .ownerId(item.getOwner().getId())
+                .lastBooking(lastBooking)
+                .nextBooking(nextBooking)
+                .comments(comments)
                 .build();
     }
 }
