@@ -35,7 +35,7 @@ public class ItemRequestMapper {
                 .build();
     }
 
-    public ItemRequest сreateRequestDtoToItemRequest(CreateItemRequestDto dto, User user) {
+    public ItemRequest createRequestDtoToItemRequest(CreateItemRequestDto dto, User user) {
         ItemRequest itemRequest = new ItemRequest();
         itemRequest.setCreated(LocalDateTime.now());
         itemRequest.setDescription(dto.getDescription());

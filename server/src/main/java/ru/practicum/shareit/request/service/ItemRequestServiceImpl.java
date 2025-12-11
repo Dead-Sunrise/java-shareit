@@ -31,7 +31,7 @@ public class ItemRequestServiceImpl implements ItemRequestService {
     public ItemRequestDto create(CreateItemRequestDto createItemRequestDto, Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("Пользователь не найден."));
-        ItemRequest itemRequest = itemRequestMapper.сreateRequestDtoToItemRequest(createItemRequestDto, user);
+        ItemRequest itemRequest = itemRequestMapper.createRequestDtoToItemRequest(createItemRequestDto, user);
         ItemRequest savedRequest = itemRequestRepository.save(itemRequest);
         List<ItemShortDto> items = itemRepository.findAllByRequestId(savedRequest.getId()).stream()
                 .map(itemMapper::itemToItemShortDto)
