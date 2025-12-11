@@ -156,9 +156,9 @@ public class UserControllerTest {
     }
 
     @Test
-    void deleteUserByIdTest() throws Exception{
+    void deleteUserByIdTest() throws Exception {
         Long userId = 1L;
-    doNothing().when(userService).deleteUserById(userId);
+        doNothing().when(userService).deleteUserById(userId);
         mockMvc.perform(delete("/users/{userId}", userId))
                 .andExpect(status().isOk());
         verify(userService).deleteUserById(userId);

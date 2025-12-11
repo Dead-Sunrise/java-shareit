@@ -71,10 +71,10 @@ public class UserServiceImplTest {
                 .toList();
         assertEquals(3, users.size());
         users.forEach(user -> {
-                    assertNotNull(user.getId());
-                    assertNotNull(user.getName());
-                    assertNotNull(user.getEmail());
-                });
+            assertNotNull(user.getId());
+            assertNotNull(user.getName());
+            assertNotNull(user.getEmail());
+        });
         assertTrue(names.contains("Name1"));
         assertTrue(names.contains("Name2"));
         assertTrue(names.contains("Name3"));

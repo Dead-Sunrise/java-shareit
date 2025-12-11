@@ -121,7 +121,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    void getAllUserItemsTest() throws Exception{
+    void getAllUserItemsTest() throws Exception {
         Long userId = 1L;
         List<ItemDtoWithCommentsAndBookings> userItems = List.of(ItemDtoWithCommentsAndBookings.builder()
                 .id(1L)
@@ -129,7 +129,7 @@ public class ItemControllerTest {
                 .description("Description1")
                 .available(true)
                 .ownerId(userId).build());
-    when(itemService.getAllUserItems(userId)).thenReturn(userItems);
+        when(itemService.getAllUserItems(userId)).thenReturn(userItems);
         mockMvc.perform(get("/items")
                         .header("X-Sharer-User-Id", userId))
                 .andExpect(status().isOk())
@@ -199,7 +199,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    void deleteItemByIdTest() throws Exception{
+    void deleteItemByIdTest() throws Exception {
         Long itemId = 1L;
         doNothing().when(itemService).deleteItemById(itemId);
         mockMvc.perform(delete("/items/{itemId}", itemId))

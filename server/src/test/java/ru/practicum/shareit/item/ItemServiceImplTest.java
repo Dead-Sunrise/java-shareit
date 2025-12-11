@@ -69,12 +69,12 @@ public class ItemServiceImplTest {
 
     @Test
     void createNewItemTest() {
-    ItemDto createdItem = itemService.create(newItem1, newUser1.getId());
-    assertNotNull(createdItem.getId());
-    assertEquals("Item1", createdItem.getName());
-    assertEquals("Description1", createdItem.getDescription());
-    assertEquals(newUser1.getId(), createdItem.getOwnerId());
-    assertTrue(createdItem.getAvailable());
+        ItemDto createdItem = itemService.create(newItem1, newUser1.getId());
+        assertNotNull(createdItem.getId());
+        assertEquals("Item1", createdItem.getName());
+        assertEquals("Description1", createdItem.getDescription());
+        assertEquals(newUser1.getId(), createdItem.getOwnerId());
+        assertTrue(createdItem.getAvailable());
     }
 
     @Test
@@ -119,10 +119,10 @@ public class ItemServiceImplTest {
     void searchItemTest() {
         ItemDto createdItem1 = itemService.create(newItem1, newUser1.getId());
         ItemDto createdItem2 = itemService.create(newItem2, newUser1.getId());
-    List<ItemDto> items = itemService.search("Item2");
-    assertNotNull(items);
-    assertEquals(1, items.size());
-    assertTrue(items.contains(createdItem2));
+        List<ItemDto> items = itemService.search("Item2");
+        assertNotNull(items);
+        assertEquals(1, items.size());
+        assertTrue(items.contains(createdItem2));
     }
 
     @Test

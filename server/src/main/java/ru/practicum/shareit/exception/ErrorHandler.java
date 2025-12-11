@@ -28,6 +28,7 @@ public class ErrorHandler {
     public Map<String, String> handleConflictException(ConflictException e) {
         return Map.of("error", e.getMessage());
     }
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Map<String, String> handleNotFoundException(NotFoundException e) {

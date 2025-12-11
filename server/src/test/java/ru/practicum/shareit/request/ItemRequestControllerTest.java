@@ -63,7 +63,7 @@ public class ItemRequestControllerTest {
         List<ItemRequestDto> requests = List.of(createTestRequestDto());
         when(itemRequestService.getAllRequestsByUser(userId)).thenReturn(requests);
         mockMvc.perform(get("/requests")
-                .header("X-Sharer-User-Id", userId))
+                        .header("X-Sharer-User-Id", userId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].id").value(1L))
@@ -106,7 +106,7 @@ public class ItemRequestControllerTest {
         Long requestId = 999L;
         when(itemRequestService.getRequestById(requestId)).thenThrow(new NotFoundException("Запрос не найден"));
         mockMvc.perform(get("/requests/{requestId}", requestId))
-                        .andExpect(status().isNotFound())
+                .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Запрос не найден"));
         verify(itemRequestService).getRequestById(requestId);
     }

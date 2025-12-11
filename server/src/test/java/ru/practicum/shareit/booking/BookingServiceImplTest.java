@@ -32,7 +32,7 @@ public class BookingServiceImplTest {
     private BookingRepository bookingRepository;
     @Autowired
     private UserRepository userRepository;
-@Autowired
+    @Autowired
     private ItemRepository itemRepository;
 
     private User user1, user2;

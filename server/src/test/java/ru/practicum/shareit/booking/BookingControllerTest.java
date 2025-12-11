@@ -111,7 +111,7 @@ public class BookingControllerTest {
         Long bookingId = 999L;
         when(bookingService.findBookingById(userId, bookingId)).thenThrow(new NotFoundException("Бронирование не найдено"));
         mockMvc.perform(get("/bookings/{bookingId}", bookingId)
-                .header("X-Sharer-User-Id", userId))
+                        .header("X-Sharer-User-Id", userId))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("Бронирование не найдено"));
         verify(bookingService).findBookingById(userId, bookingId);
