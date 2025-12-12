@@ -145,4 +145,3 @@ public class BookingControllerTest {
         verify(bookingService).findAllBookingsByUserItems(userId, BookingState.WAITING);
     }
 }
-

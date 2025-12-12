@@ -52,9 +52,7 @@ public class UserControllerTest {
                 .name("Name")
                 .email("user@yandex.ru")
                 .build();
-
         when(userService.createUser(any(UserDto.class))).thenReturn(createdUser);
-
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(userDto)))
@@ -71,14 +69,12 @@ public class UserControllerTest {
                 .name("Name")
                 .email("user@yandex.ru")
                 .build();
-
         UserDto updatedUser = UserDto.builder()
                 .id(userId)
                 .name("Updated Name")
                 .email("updated@yandex.ru")
                 .build();
         when(userService.updateUser(any(UserDto.class), eq(userId))).thenReturn(updatedUser);
-
         mockMvc.perform(patch("/users/{userId}", userId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedUser)))
@@ -97,7 +93,6 @@ public class UserControllerTest {
                 .build();
         when(userService.updateUser(any(UserDto.class), eq(userId)))
                 .thenThrow(new ConflictException("Email уже существует"));
-
         mockMvc.perform(patch("/users/{userId}", userId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updateRequest)))
