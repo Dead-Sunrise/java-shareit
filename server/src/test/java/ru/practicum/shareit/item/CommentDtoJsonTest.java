@@ -43,18 +43,8 @@ public class CommentDtoJsonTest {
 
     @Test
     void testDeserialize() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "text": "Comment",
-                "authorName": "Name",
-                "item": {
-                    "id": 1,
-                    "name": "Item"
-                },
-                "created": "2024-12-12T10:30:00"
-            }
-            """;
+        String content = "{\"id\": 1, \"text\": \"Comment\", \"authorName\": \"Name\", "
+                + "\"item\": {\"id\": 1, \"name\": \"Item\"}, \"created\": \"2024-12-12T10:30:00\"}";
         CommentDto result = json.parseObject(content);
         assertThat(result.getId()).isEqualTo(1L);
         assertThat(result.getText()).isEqualTo("Comment");
@@ -67,13 +57,7 @@ public class CommentDtoJsonTest {
 
     @Test
     void testDeserializeWithoutCreatedDate() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "text": "Comment",
-                "authorName": "Name"
-            }
-            """;
+        String content = "{\"id\": 1, \"text\": \"Comment\", \"authorName\": \"Name\"}";
         CommentDto result = json.parseObject(content);
         assertThat(result.getId()).isEqualTo(1L);
         assertThat(result.getText()).isEqualTo("Comment");

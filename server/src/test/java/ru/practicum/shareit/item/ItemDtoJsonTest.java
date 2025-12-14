@@ -50,31 +50,16 @@ public class ItemDtoJsonTest {
 
     @Test
     void testDeserializeWithRequestId() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "name": "Name",
-                "description": "Description",
-                "available": true,
-                "ownerId": 10,
-                "requestId": 100
-            }
-            """;
+        String content = "{\"id\": 1, \"name\": \"Name\", \"description\": \"Description\", "
+                + "\"available\": true, \"ownerId\": 10, \"requestId\": 100}";
         ItemDto result = json.parseObject(content);
         assertThat(result.getRequestId()).isEqualTo(100L);
     }
 
     @Test
     void testDeserializeWithoutRequestId() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "name": "Name",
-                "description": "Description",
-                "available": true,
-                "ownerId": 10
-            }
-            """;
+        String content = "{\"id\": 1, \"name\": \"Name\", \"description\": \"Description\", "
+                + "\"available\": true, \"ownerId\": 10}";
         ItemDto result = json.parseObject(content);
         assertThat(result.getRequestId()).isNull();
     }

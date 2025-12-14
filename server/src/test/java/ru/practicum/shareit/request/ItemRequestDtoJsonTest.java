@@ -56,27 +56,9 @@ public class ItemRequestDtoJsonTest {
 
     @Test
     void testDeserialize() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "description": "Description",
-                "user": {
-                    "id": 1,
-                    "name": "Requester"
-                },
-                "created": "2024-12-12T10:00:00",
-                "items": [
-                    {
-                        "id": 10,
-                        "name": "Item1"
-                    },
-                    {
-                        "id": 11,
-                        "name": "Item2"
-                    }
-                ]
-            }
-            """;
+        String content = "{\"id\": 1, \"description\": \"Description\", \"user\": {\"id\": 1, \"name\": \"Requester\"}, "
+                + "\"created\": \"2024-12-12T10:00:00\", \"items\": [{\"id\": 10, \"name\": \"Item1\"}, "
+                + "{\"id\": 11, \"name\": \"Item2\"}]}";
         ItemRequestDto result = json.parseObject(content);
         assertThat(result.getId()).isEqualTo(1L);
         assertThat(result.getDescription()).isEqualTo("Description");
@@ -91,18 +73,8 @@ public class ItemRequestDtoJsonTest {
 
     @Test
     void testDeserializeWithEmptyItems() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "description": "Description",
-                "user": {
-                    "id": 1,
-                    "name": "Requester"
-                },
-                "created": "2024-12-12T10:00:00",
-                "items": []
-            }
-            """;
+        String content = "{\"id\": 1, \"description\": \"Description\", \"user\": {\"id\": 1, \"name\": \"Requester\"}, "
+                + "\"created\": \"2024-12-12T10:00:00\", \"items\": []}";
         ItemRequestDto result = json.parseObject(content);
         assertThat(result.getItems()).isNotNull();
         assertThat(result.getItems()).isEmpty();
@@ -110,17 +82,8 @@ public class ItemRequestDtoJsonTest {
 
     @Test
     void testDeserializeWithNullItems() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "description": "Description",
-                "user": {
-                    "id": 1,
-                    "name": "Requester"
-                },
-                "created": "2024-12-12T10:00:00"
-            }
-            """;
+        String content = "{\"id\": 1, \"description\": \"Description\", \"user\": {\"id\": 1, \"name\": \"Requester\"}, "
+                + "\"created\": \"2024-12-12T10:00:00\"}";
         ItemRequestDto result = json.parseObject(content);
         assertThat(result.getItems()).isNull();
     }

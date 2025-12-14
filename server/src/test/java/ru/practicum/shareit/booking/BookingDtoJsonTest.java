@@ -47,16 +47,8 @@ public class BookingDtoJsonTest {
 
     @Test
     void testBookingDtoDeserialize() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "start": "2024-12-12T10:00:00",
-                "end": "2024-12-13T10:00:00",
-                "itemId": 10,
-                "bookerId": 20,
-                "status": "WAITING"
-            }
-            """;
+        String content = "{\"id\": 1, \"start\": \"2024-12-12T10:00:00\", \"end\": \"2024-12-13T10:00:00\", "
+                + "\"itemId\": 10, \"bookerId\": 20, \"status\": \"WAITING\"}";
         BookingDto result = bookingDtoJson.parseObject(content);
         assertThat(result.getId()).isEqualTo(1L);
         assertThat(result.getStart()).isEqualTo(LocalDateTime.of(2024, 12, 12, 10, 0, 0));
@@ -68,16 +60,8 @@ public class BookingDtoJsonTest {
 
     @Test
     void testBookingDtoDeserializeWithCustomDateFormat() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "start": "2024-12-12T10:00:00.000",
-                "end": "2024-12-13T10:00:00.000Z",
-                "itemId": 10,
-                "bookerId": 20,
-                "status": "WAITING"
-            }
-            """;
+        String content = "{\"id\": 1, \"start\": \"2024-12-12T10:00:00.000\", \"end\": \"2024-12-13T10:00:00.000Z\", "
+                + "\"itemId\": 10, \"bookerId\": 20, \"status\": \"WAITING\"}";
         BookingDto result = bookingDtoJson.parseObject(content);
         assertThat(result.getStart()).isNotNull();
         assertThat(result.getEnd()).isNotNull();

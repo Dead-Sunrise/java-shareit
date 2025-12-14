@@ -30,13 +30,7 @@ public class UserDtoJsonTest {
 
     @Test
     void testDeserialize() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "name": "Name",
-                "email": "user@yandex.ru"
-            }
-            """;
+        String content = "{\"id\": 1, \"name\": \"Name\", \"email\": \"user@yandex.ru\"}";
         UserDto result = json.parseObject(content);
         assertThat(result.getId()).isEqualTo(1L);
         assertThat(result.getName()).isEqualTo("Name");
@@ -45,12 +39,7 @@ public class UserDtoJsonTest {
 
     @Test
     void testDeserializeWithMissingName() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "email": "user@yandex.ru"
-            }
-            """;
+        String content = "{\"id\": 1, \"email\": \"user@yandex.ru\"}";
         UserDto result = json.parseObject(content);
         assertThat(result.getId()).isEqualTo(1L);
         assertThat(result.getName()).isNull();
@@ -59,12 +48,7 @@ public class UserDtoJsonTest {
 
     @Test
     void testDeserializeWithMissingEmail() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "name": "Name"
-            }
-            """;
+        String content = "{\"id\": 1, \"name\": \"Name\"}";
         UserDto result = json.parseObject(content);
         assertThat(result.getId()).isEqualTo(1L);
         assertThat(result.getName()).isEqualTo("Name");
@@ -73,13 +57,7 @@ public class UserDtoJsonTest {
 
     @Test
     void testDeserializeWithInvalidEmail() throws Exception {
-        String content = """
-            {
-                "id": 1,
-                "name": "Name",
-                "email": "invalid-email"
-            }
-            """;
+        String content = "{\"id\": 1, \"name\": \"Name\", \"email\": \"invalid-email\"}";
         UserDto result = json.parseObject(content);
         assertThat(result.getEmail()).isEqualTo("invalid-email");
     }
